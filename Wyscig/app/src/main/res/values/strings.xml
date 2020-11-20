@@ -16,4 +16,7 @@
     <string name="swiatla">Używasz sensora światła.</string>
     <string name="odleglosci">Używasz sensora odległości.</string>
     <string name="stop">Zakończ liczenie</string>
+    <string name="start">Start</string>
+    <string name="exit">wyjdź</string>
+    <string name="data">Czas rozpoczęcia: %s</string>
 </resources>

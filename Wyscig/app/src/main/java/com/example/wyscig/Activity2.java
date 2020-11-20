@@ -11,7 +11,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
@@ -30,12 +29,10 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
     private MediaPlayer BeepMP;
     private TextView okrazenie;
     private TextView data;
-    DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm", Locale.ENGLISH);
-    Date date = new Date();
     int i=0;
     private static final int SENSOR_SENSITIVITY = 4;
     Chronometer cmTimer;
-    Button btnStart, btnStop;
+    Button btnStart, btnStop, btnExit;
     Boolean resume = false;
     long elapsedTime;
     String TAG = "TAG";
@@ -53,49 +50,43 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
         cmTimer = (Chronometer) findViewById(R.id.timer);
         btnStart = (Button) findViewById(R.id.start_zegar);
         btnStop = (Button) findViewById(R.id.stop);
-        cmTimer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            public void onChronometerTick(Chronometer arg0) {
-                if (!resume) {
-                    long minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase())/1000) / 60;
-                    long seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase())/1000) % 60;
-                    elapsedTime = SystemClock.elapsedRealtime();
-                    Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
-                } else {
-                    long minutes = ((elapsedTime - cmTimer.getBase())/1000) / 60;
-                    long seconds = ((elapsedTime - cmTimer.getBase())/1000) % 60;
-                    elapsedTime = elapsedTime + 1000;
-                    Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
-                }
+        btnExit = (Button) findViewById(R.id.exit);
+        btnStart.setOnClickListener(v -> {
+            btnStart.setEnabled(false);
+            btnStop.setEnabled(true);
+            if (!resume) {
+                cmTimer.setBase(SystemClock.elapsedRealtime());
             }
+            cmTimer.start();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.ENGLISH);
+            Date date = new Date();
+            String dataS = getString(R.string.data,dateFormat.format(date));
+            data.setText(dataS);
+        });
+        btnStop.setOnClickListener(v -> {
+            btnStart.setEnabled(true);
+            btnStop.setEnabled(false);
+            cmTimer.stop();
+        });
+        btnExit.setOnClickListener(v -> openMainActivity());
+        cmTimer.setOnChronometerTickListener(arg0 -> {
+            long minutes;
+            long seconds;
+            if (!resume) {
+                minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) / 60;
+                seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
+                elapsedTime = SystemClock.elapsedRealtime();
+            } else {
+                minutes = ((elapsedTime - cmTimer.getBase()) / 1000) / 60;
+                seconds = ((elapsedTime - cmTimer.getBase()) / 1000) % 60;
+                elapsedTime = elapsedTime + 1000;
+            }
+            Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
         });
 
     }
 
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.start_zegar:
-                btnStart.setEnabled(false);
-                btnStop.setEnabled(true);
-                if (!resume) {
-                    cmTimer.setBase(SystemClock.elapsedRealtime());
-                    cmTimer.start();
-                } else {
-                    cmTimer.start();
-                }
-                break;
 
-            case R.id.stop:
-                btnStart.setEnabled(true);
-                btnStop.setEnabled(false);
-                cmTimer.stop();
-                btnStop.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        openMainActivity();
-                    }
-                });
-        }
-    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -117,7 +108,6 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
                 okrazenie.setText("Wykonano "+i+" okrążeń");
             }
         }
-        data.setText("Czas rozpoczęcia: "+dateFormat.format(date));
     }
 
     @Override

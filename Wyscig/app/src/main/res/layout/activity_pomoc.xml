@@ -43,11 +43,10 @@
         android:id="@+id/powrot_z_helpa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="@string/powrot_z_helpa"
-        android:backgroundTint="@color/purple_700"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        />
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/powrot_z_helpa"/>
 
 </RelativeLayout>

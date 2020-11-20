@@ -11,26 +11,18 @@ public class MainActivity extends AppCompatActivity {
     SwitchCompat switchCompat;
     ImageButton button;
     Button pomoc;
-    boolean SwitchChecked=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         switchCompat = findViewById(R.id.switch1);
-        switchCompat.setOnClickListener(v -> {
-            if (switchCompat.isChecked()) {
-                SwitchChecked=true;
-            }else {
-                SwitchChecked=false;
-            }
-        });
         button = findViewById(R.id.imageButton);
         button.setOnClickListener(v -> {
-            if(SwitchChecked==false){
-                openActivity2();
-            }else{
+            if(switchCompat.isChecked()){
                 openActivity3();
+            }else{
+                openActivity2();
             }
         });
         pomoc = findViewById(R.id.pomoc);

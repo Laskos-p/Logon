@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Wyscig</string>
+    <string name="tytul">Wyścigi wokół stołu</string>
+    <string name="zmiana">odległości</string>
+    <string name="zmiana2">światła</string>
+    <string name="stolik">stolik</string>
+    <string name="Wyscig">Biegnij wokół stołu</string>
+    <string name="okrazenia1">"Wykonano "</string>
+    <string name="okrazenia2">" okrążeń"</string>
+    <string name="sensor">Sensor</string>
+    <string name="help_tytul">Oto pomoc!</string>
+    <string name="help">Jeśli jesteś na kwarantannie i ci się nudzi, postaw telefon na stole, wybierz jeden z dostępnych w Twoim telefonie sensorów i zacznij biegać wokół stołu! Aplikacja zmierzy Twoje okrążenia.</string>
+    <string name="powrot_z_helpa">Wróć do menu</string>
+    <string name="pomoc">Pomoc</string>
+    <string name="stoliczek">stoliczek</string>
+    <string name="swiatla">Używasz sensora światła.</string>
+    <string name="odleglosci">Używasz sensora odległości.</string>
+    <string name="stop">Zakończ liczenie</string>
+</resources>

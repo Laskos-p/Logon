@@ -35,27 +35,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/okrazenia"
         android:layout_centerHorizontal="true"/>
-    <Button
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:text="@string/stop"/>
-    <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal">
+        android:layout_alignParentBottom="true">
 
         <Chronometer
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:id="@+id/cmTimer" />
+            android:id="@+id/timer" />
 
         <Button
-            android:id="@+id/btnStart"
+            android:layout_marginTop="50dp"
+            android:id="@+id/start_zegar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Start"
@@ -65,7 +62,7 @@
             android:id="@+id/stop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stop"
-            android:onClick="onClick" />
+            android:onClick="onClick"
+            android:text="@string/stop" />
     </LinearLayout>
 </RelativeLayout>

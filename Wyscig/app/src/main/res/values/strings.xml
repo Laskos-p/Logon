@@ -19,4 +19,5 @@
     <string name="start">Start</string>
     <string name="exit">wyjdź</string>
     <string name="data">Czas rozpoczęcia: %s</string>
+    <string name="ustawienia">Ustawienia</string>
 </resources>

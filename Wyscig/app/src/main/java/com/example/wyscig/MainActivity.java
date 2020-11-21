@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     SwitchCompat switchCompat;
     ImageButton button;
     Button pomoc;
+    Button ustawienia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         });
         pomoc = findViewById(R.id.pomoc);
         pomoc.setOnClickListener(v -> openPomoc());
+        ustawienia = findViewById(R.id.ustawienia);
+        ustawienia.setOnClickListener(v -> openUstawienia());
     }
     public void openPomoc(){
         Intent intent = new Intent(this, Pomoc.class);
@@ -40,4 +43,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Activity3.class);
         startActivity(intent);
     }
+    public void openUstawienia(){
+        Intent intent = new Intent(this, Ustawienia.class);
+        startActivity(intent);
+}
 }

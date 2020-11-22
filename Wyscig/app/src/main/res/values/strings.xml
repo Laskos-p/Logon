@@ -19,5 +19,8 @@
     <string name="start">Start</string>
     <string name="exit">wyjdź</string>
     <string name="data">Czas rozpoczęcia: %s</string>
+    <string name="Dlugosc">Długość stolika w centymetrach:</string>
+    <string name="Szerokosc">Szerokość stolika w centymetrach:</string>
     <string name="ustawienia">Ustawienia</string>
+    <string name="zapis">Zapisz</string>
 </resources>

@@ -29,11 +29,12 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
     private MediaPlayer BeepMP;
     private TextView okrazenie;
     private TextView data;
-    int i=0;
+    int i = 0;
     private static final int SENSOR_SENSITIVITY = 4;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
     Boolean resume = false;
+    Boolean on = false;
     long elapsedTime;
     String TAG = "TAG";
 
@@ -47,11 +48,13 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
         BeepMP = MediaPlayer.create(this,R.raw.beep);
         okrazenie = findViewById(R.id.okrazenia);
         data = findViewById(R.id.data_czas);
-        cmTimer = (Chronometer) findViewById(R.id.timer);
-        btnStart = (Button) findViewById(R.id.start_zegar);
-        btnStop = (Button) findViewById(R.id.stop);
-        btnExit = (Button) findViewById(R.id.exit);
+        cmTimer = findViewById(R.id.timer);
+        btnStart = findViewById(R.id.start_zegar);
+        btnStop = findViewById(R.id.stop);
+        btnExit = findViewById(R.id.exit);
         btnStart.setOnClickListener(v -> {
+            on = true;
+            i = 0;
             btnStart.setEnabled(false);
             btnStop.setEnabled(true);
             if (!resume) {
@@ -64,6 +67,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
             data.setText(dataS);
         });
         btnStop.setOnClickListener(v -> {
+            on = false;
             btnStart.setEnabled(true);
             btnStop.setEnabled(false);
             cmTimer.stop();
@@ -101,7 +105,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
+        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY && on) {
             if (event.values[0] <= SENSOR_SENSITIVITY) {
                 BeepMP.start();
                 i++;

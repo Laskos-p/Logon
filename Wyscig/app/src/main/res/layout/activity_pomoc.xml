@@ -30,15 +30,6 @@
         android:textColor="@color/black"
         />
 
-    <ImageView
-        android:id="@+id/stol_logon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/help"
-        android:src="@drawable/stoliczek"
-        android:layout_marginTop="35dp"
-        android:contentDescription="@string/stoliczek" />
-
     <Button
         android:id="@+id/powrot_z_helpa"
         android:layout_width="wrap_content"

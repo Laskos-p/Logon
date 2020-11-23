@@ -73,26 +73,33 @@
         android:scaleType="centerInside"
         android:src="@drawable/stolik"
         android:contentDescription="@string/stolik" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="12dp"
+        android:showDividers="middle"
+        android:divider="@color/white"
+        android:background="@color/purple_700">
 
     <Button
         android:id="@+id/pomoc"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="12dp"
-        android:text="@string/pomoc" />
+        android:text="@string/pomoc"
+        android:layout_weight="1"
+        style="?android:attr/buttonBarButtonStyle"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/ustawienia"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="12dp"
-        android:text="@string/ustawienia" />
+        android:text="@string/ustawienia"
+        android:layout_weight="1"
+        style="?android:attr/buttonBarButtonStyle"
+        android:textColor="@color/white"/>
 
-
+    </LinearLayout>
 </RelativeLayout>

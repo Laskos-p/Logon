@@ -23,4 +23,7 @@
     <string name="Szerokosc">Szerokość stolika w centymetrach:</string>
     <string name="ustawienia">Ustawienia</string>
     <string name="zapis">Zapisz</string>
+    <string name="opcje_radio">Wybierz sensor</string>
+    <string name="sensor_odleglosci">Sensor odległości</string>
+    <string name="sensor_jasnosci">Sensor jasności</string>
 </resources>

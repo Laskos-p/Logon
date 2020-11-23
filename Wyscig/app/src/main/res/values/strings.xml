@@ -5,8 +5,7 @@
     <string name="zmiana2">światła</string>
     <string name="stolik">stolik</string>
     <string name="Wyscig">Biegnij wokół stołu</string>
-    <string name="okrazenia1">"Wykonano "</string>
-    <string name="okrazenia2">" okrążeń"</string>
+    <string name="okrazenia">Wykonano %d okrążeń</string>
     <string name="sensor">Sensor</string>
     <string name="help_tytul">Oto pomoc!</string>
     <string name="help">Jeśli jesteś na kwarantannie i ci się nudzi, postaw telefon na stole, wybierz jeden z dostępnych w Twoim telefonie sensorów i zacznij biegać wokół stołu! Aplikacja zmierzy Twoje okrążenia.</string>
@@ -26,4 +25,5 @@
     <string name="opcje_radio">Wybierz sensor</string>
     <string name="sensor_odleglosci">Sensor odległości</string>
     <string name="sensor_jasnosci">Sensor jasności</string>
+    <string name="tabela_wynikow">Tabela wyników</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.example.wyscig;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -31,6 +30,7 @@ public class Activity3 extends AppCompatActivity {
     private MediaPlayer BeepMP;
     private float last_value;
     int j = 0;
+    String okrazenia;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
     Boolean resume = false;
@@ -88,14 +88,14 @@ public class Activity3 extends AppCompatActivity {
             Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
         });
         lightEventListener = new SensorEventListener() {
-            @SuppressLint("SetTextI18n")
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 float value = sensorEvent.values[0];
                 if(last_value >= value*2 && on) {
                 BeepMP.start();
                 j++;
-                okrazenie2.setText("Wykonano "+j+" okrążeń");
+                okrazenia = getString(R.string.okrazenia,j);
+                okrazenie2.setText(okrazenia);
                 }
                 last_value=value;
 

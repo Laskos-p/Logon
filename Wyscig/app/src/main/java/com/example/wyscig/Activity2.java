@@ -1,6 +1,5 @@
 package com.example.wyscig;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -30,6 +29,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
     private TextView okrazenie;
     private TextView data;
     int i = 0;
+    String okrazenia;
     private static final int SENSOR_SENSITIVITY = 4;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
@@ -101,7 +101,6 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
         super.onPause();
         mSensorManager.unregisterListener(this);
     }
-    @SuppressLint("SetTextI18n")
     @Override
     public void onSensorChanged(SensorEvent event) {
 
@@ -109,7 +108,8 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
             if (event.values[0] <= SENSOR_SENSITIVITY) {
                 BeepMP.start();
                 i++;
-                okrazenie.setText("Wykonano "+i+" okrążeń");
+                okrazenia = getString(R.string.okrazenia,i);
+                okrazenie.setText(okrazenia);
             }
         }
     }

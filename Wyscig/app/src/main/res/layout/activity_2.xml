@@ -9,12 +9,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/sensor"
         android:text="@string/odleglosci"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:layout_margin="15dp"/>
+        android:layout_margin="15dp" />
+
+    <TextView
+        android:id="@+id/wymiary_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:layout_below="@id/sensor"/>
+        <!--android:text="Tekst tu powinien iść od wielkości stołu"-->
+
 
     <TextView
         android:id="@+id/start"

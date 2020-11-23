@@ -7,6 +7,7 @@
     android:background="@color/blekitny">
 
     <TextView
+        android:id="@+id/sensor2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/swiatla"
@@ -15,6 +16,15 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_margin="15dp"/>
+    <TextView
+        android:id="@+id/wymiary_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:layout_below="@id/sensor2"/>
+    <!--android:text="Tekst tu powinien iść od wielkości stołu"-->
 
     <TextView
         android:id="@+id/start2"

@@ -29,7 +29,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
     private MediaPlayer BeepMP;
     private TextView okrazenie, data;
     int i = 0;
-    String okrazenia, TAG = "TAG";
+    String okrazenia, TAG = "TAG", dataS, obwodS, obwodSError;
     private static final int SENSOR_SENSITIVITY = 4;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
@@ -40,14 +40,14 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
-        try {
-            SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_APPEND);
-            int obwod = ustawienia.getInt("obwod", 0);
-            final TextView textViewToChange = (TextView) findViewById(R.id.odleglosc);
-            textViewToChange.setText("Obwód to: " + obwod);
-        } catch (Throwable e) {
-            final TextView textViewToChange = (TextView) findViewById(R.id.odleglosc);
-            textViewToChange.setText("Podaj parametry stołu w ustawieniach");
+        SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_PRIVATE);
+        int obwod = ustawienia.getInt("obwod", 0);
+        obwodS = getString(R.string.Obwód,obwod);
+        final TextView textViewToChange = findViewById(R.id.odleglosc);
+        textViewToChange.setText(obwodS);
+        if (obwod == 0) {
+            obwodSError = getString(R.string.Obwód_error);
+            textViewToChange.setText(obwodSError);
         }
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -58,6 +58,10 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
         btnStart = findViewById(R.id.start_zegar);
         btnStop = findViewById(R.id.stop);
         btnExit = findViewById(R.id.exit);
+        okrazenia = getString(R.string.okrazenia,i);
+        okrazenie.setText(okrazenia);
+        dataS = getString(R.string.data,"");
+        data.setText(dataS);
         btnStart.setOnClickListener(v -> {
             on = true;
             i = 0;
@@ -69,7 +73,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
             cmTimer.start();
             DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.ENGLISH);
             Date date = new Date();
-            String dataS = getString(R.string.data,dateFormat.format(date));
+            dataS = getString(R.string.data,dateFormat.format(date));
             data.setText(dataS);
         });
         btnStop.setOnClickListener(v -> {

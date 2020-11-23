@@ -26,4 +26,6 @@
     <string name="sensor_odleglosci">Sensor odległości</string>
     <string name="sensor_jasnosci">Sensor jasności</string>
     <string name="tabela_wynikow">Tabela wyników</string>
+    <string name="Obwód">Obwód to: %d</string>
+    <string name="Obwód_error">Podaj parametry stołu w ustawieniach</string>
 </resources>

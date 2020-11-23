@@ -27,33 +27,38 @@
         android:layout_below="@id/sensor"/>
         <!--android:text="Tekst tu powinien iść od wielkości stołu"-->
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <TextView
+        <TextView
         android:id="@+id/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Wyscig"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/okrazenia"/>
+        android:text="@string/Wyscig" />
 
-    <TextView
+        <TextView
         android:id="@+id/okrazenia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
-    <TextView
+        android:text="@string/okrazenia" />
+
+        <TextView
         android:id="@+id/data_czas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/okrazenia"
-        android:layout_centerHorizontal="true"/>
+        android:text="@string/data"/>
 
-    <TextView
+        <TextView
         android:id="@+id/odleglosc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/data_czas"
-        android:layout_centerHorizontal="true" />
+        android:text="@string/Obwód"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -81,10 +86,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/stop"/>
+
         <Button
             android:id="@+id/exit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/exit"/>
+
     </LinearLayout>
+
 </RelativeLayout>

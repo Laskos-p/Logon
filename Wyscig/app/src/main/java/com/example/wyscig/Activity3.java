@@ -31,7 +31,6 @@ public class Activity3 extends AppCompatActivity {
     private MediaPlayer BeepMP;
     private float last_value;
     int j = 0;
-    private static final int SENSOR_SENSITIVITY = 4;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
     Boolean resume = false;
@@ -93,7 +92,7 @@ public class Activity3 extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 float value = sensorEvent.values[0];
-                if(last_value > value/2 && on) {
+                if(last_value >= value*2 && on) {
                 BeepMP.start();
                 j++;
                 okrazenie2.setText("Wykonano "+j+" okrążeń");

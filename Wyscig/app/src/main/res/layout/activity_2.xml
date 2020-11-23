@@ -36,6 +36,13 @@
         android:layout_below="@id/okrazenia"
         android:layout_centerHorizontal="true"/>
 
+    <TextView
+        android:id="@+id/odleglosc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/data_czas"
+        android:layout_centerHorizontal="true" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

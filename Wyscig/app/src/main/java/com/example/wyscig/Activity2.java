@@ -3,6 +3,7 @@ package com.example.wyscig;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -42,7 +43,15 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
-
+        try {
+            SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_APPEND);
+            int obwod = ustawienia.getInt("obwod", 0);
+            final TextView textViewToChange = (TextView) findViewById(R.id.odleglosc);
+            textViewToChange.setText("Obwód to: " + obwod);
+        } catch (Throwable e) {
+            final TextView textViewToChange = (TextView) findViewById(R.id.odleglosc);
+            textViewToChange.setText("Podaj parametry stołu w ustawieniach");
+        }
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         BeepMP = MediaPlayer.create(this,R.raw.beep);

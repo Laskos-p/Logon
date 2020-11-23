@@ -41,7 +41,7 @@ public class Ustawienia extends AppCompatActivity {
             final TextView textViewToChange = (TextView) findViewById(R.id.obwodText);
             textViewToChange.setText("Obwód to: "+ obwod);
 
-            SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("ustawienia", MODE_PRIVATE);
             SharedPreferences.Editor ustawienia = sharedPreferences.edit();
             ustawienia.putInt("obwod", wysInt);
             ustawienia.putInt("obwod", szerInt);

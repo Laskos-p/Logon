@@ -10,8 +10,7 @@ import android.widget.ImageButton;
 public class MainActivity extends AppCompatActivity {
     SwitchCompat switchCompat;
     ImageButton button;
-    Button pomoc;
-    Button ustawienia;
+    Button pomoc, ustawienia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +45,5 @@ public class MainActivity extends AppCompatActivity {
     public void openUstawienia(){
         Intent intent = new Intent(this, Ustawienia.class);
         startActivity(intent);
-}
+    }
 }

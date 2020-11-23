@@ -27,17 +27,14 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
     private SensorManager mSensorManager;
     private Sensor mProximity;
     private MediaPlayer BeepMP;
-    private TextView okrazenie;
-    private TextView data;
+    private TextView okrazenie, data;
     int i = 0;
-    String okrazenia;
+    String okrazenia, TAG = "TAG";
     private static final int SENSOR_SENSITIVITY = 4;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
-    Boolean resume = false;
-    Boolean on = false;
+    Boolean resume = false, on = false;
     long elapsedTime;
-    String TAG = "TAG";
 
     @Override
     public final void onCreate(Bundle savedInstanceState) {

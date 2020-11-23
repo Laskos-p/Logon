@@ -25,18 +25,15 @@ public class Activity3 extends AppCompatActivity {
     private SensorManager sensorManager;
     private Sensor lightSensor;
     private SensorEventListener lightEventListener;
-    private TextView okrazenie2;
-    private TextView data;
+    private TextView okrazenie2, data;
     private MediaPlayer BeepMP;
     private float last_value;
     int j = 0;
-    String okrazenia;
+    String okrazenia, TAG = "TAG";
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
-    Boolean resume = false;
-    Boolean on = false;
+    Boolean resume = false, on = false;
     long elapsedTime;
-    String TAG = "TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

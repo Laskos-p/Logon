@@ -33,7 +33,6 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
     float tempoSeconds = 0, tempo = 0;
     double trasa = 0, obwodDouble, predkosc = 0, tempoTrasa = 0;
     String okrazenia, dataS, obwodS, obwodSError, TrasaS, PredkoscS, TempoS;
-    private static final int SENSOR_SENSITIVITY = 4;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
     Boolean resume = false, on = false;
@@ -133,7 +132,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY && on && event.values[0] <= SENSOR_SENSITIVITY) {
+        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY && on && event.values[0] <= event.sensor.getMaximumRange() && event.values[0] >= -event.sensor.getMaximumRange()) {
             BeepMP.start();
             trasa += obwodDouble;
             i++;

@@ -132,7 +132,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY && on && event.values[0] <= event.sensor.getMaximumRange() && event.values[0] >= -event.sensor.getMaximumRange()) {
+        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY && on && event.values[0] < event.sensor.getMaximumRange() && event.values[0] > -event.sensor.getMaximumRange()) {
             BeepMP.start();
             trasa += obwodDouble;
             i++;

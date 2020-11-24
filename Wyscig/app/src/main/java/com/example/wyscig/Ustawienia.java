@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Ustawienia extends AppCompatActivity {
-    Button wyjscie, zapis;
     EditText szerokosc, wysokosc;
     int obwod;
     RadioButton jasnosc, odleglosc;
@@ -22,30 +21,23 @@ public class Ustawienia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ustawienia);
 
-        wyjscie = findViewById(R.id.wyjscie);
-        wyjscie.setOnClickListener(v -> openMain());
+        findViewById(R.id.wyjscie).setOnClickListener(v -> openMain());
 
-        zapis = findViewById(R.id.zapis);
-        zapis.setOnClickListener(v -> Pole());
+        findViewById(R.id.zapis).setOnClickListener(v -> Pole());
 
         SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_PRIVATE);
-        try {
-            jasnosc = (RadioButton) findViewById(R.id.jasnosc);
-            odleglosc = (RadioButton) findViewById(R.id.odleglosc);
-            jasnosc.setChecked(ustawienia.getBoolean("ustawienia_jasnosc",true));
-            odleglosc.setChecked(ustawienia.getBoolean("ustawienia_odleglosc", false));
-        } catch (Throwable e){}
+        jasnosc = (RadioButton) findViewById(R.id.jasnosc);
+        odleglosc = (RadioButton) findViewById(R.id.odleglosc);
+        jasnosc.setChecked(ustawienia.getBoolean("ustawienia_jasnosc",true));
+        odleglosc.setChecked(ustawienia.getBoolean("ustawienia_odleglosc", false));
     }
     public void Pole(){
         try {
             wysokosc = (EditText) findViewById(R.id.wysokosc);
             szerokosc = (EditText) findViewById(R.id.szerokosc);
 
-            String wysStr = wysokosc.getText().toString();
-            int wysInt = Integer.parseInt(wysStr);
-
-            String szerStr = szerokosc.getText().toString();
-            int szerInt = Integer.parseInt(szerStr);
+            int wysInt = Integer.parseInt(wysokosc.getText().toString());
+            int szerInt = Integer.parseInt(szerokosc.getText().toString());
 
             obwod = 2*(wysInt + szerInt + 40);
 
@@ -77,8 +69,7 @@ public class Ustawienia extends AppCompatActivity {
         ustawienia.commit();
     }
     public void openMain() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, MainActivity.class));
         this.finish();
     }
 }

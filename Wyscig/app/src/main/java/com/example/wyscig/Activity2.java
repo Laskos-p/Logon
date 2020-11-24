@@ -23,22 +23,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-
 public class Activity2 extends AppCompatActivity implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mProximity;
     private MediaPlayer BeepMP;
     private TextView okrazenie, data, Trasa, start, Predkosc, Tempo;
-    int i = 0, obwod, czas = 0, tempoHours = 0, tempoMinutes = 0;
+    int okrazenia = 0, obwod, czas = 0, tempoHours = 0, tempoMinutes = 0;
     float tempoSeconds = 0, tempo = 0;
     double trasa = 0, obwodDouble, predkosc = 0, tempoTrasa = 0;
-    String okrazenia, dataS, obwodS, obwodSError, TrasaS, PredkoscS, TempoS;
+    String okrazeniaS, dataS, obwodS, obwodSError, TrasaS, PredkoscS, TempoS;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
     Boolean on = false;
     long hours, minutes, seconds;
     DecimalFormat precision2 = new DecimalFormat("0.00");
-    DecimalFormat precision0 = new DecimalFormat("0");
 
     @Override
     public final void onCreate(Bundle savedInstanceState) {
@@ -70,19 +68,19 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             btnStop.setEnabled(false);
         }
         btnExit = findViewById(R.id.exit);
-        okrazenia = getString(R.string.okrazenia, i);
-        okrazenie.setText(okrazenia);
+        okrazeniaS = getString(R.string.okrazenia, okrazenia);
+        okrazenie.setText(okrazeniaS);
         dataS = getString(R.string.data, "");
         data.setText(dataS);
         TrasaS = getString(R.string.Trasa, precision2.format(trasa));
         Trasa.setText(TrasaS);
         PredkoscS = getString(R.string.predkosc, precision2.format(predkosc));
         Predkosc.setText(PredkoscS);
-        TempoS = getString(R.string.tempo, precision0.format(tempoHours), precision0.format(tempoMinutes), precision0.format(tempoSeconds));
+        TempoS = getString(R.string.tempo, tempoHours, tempoMinutes, (int) tempoSeconds);
         Tempo.setText(TempoS);
         btnStart.setOnClickListener(v -> {
             on = true;
-            i = 0;
+            okrazenia = 0;
             btnStart.setEnabled(false);
             btnStop.setEnabled(true);
             cmTimer.setBase(SystemClock.elapsedRealtime());
@@ -107,9 +105,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
             arg0.setText(getString(R.string.czas, hours, minutes, seconds));
         });
-
     }
-
 
     @Override
     protected void onResume() {
@@ -128,9 +124,9 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY && on && event.values[0] < event.sensor.getMaximumRange() && event.values[0] > -event.sensor.getMaximumRange()) {
             BeepMP.start();
             trasa += obwodDouble;
-            i++;
-            okrazenia = getString(R.string.okrazenia, i);
-            okrazenie.setText(okrazenia);
+            okrazenia++;
+            okrazeniaS = getString(R.string.okrazenia, okrazenia);
+            okrazenie.setText(okrazeniaS);
             TrasaS = getString(R.string.Trasa, precision2.format(trasa));
             Trasa.setText(TrasaS);
             predkosc = trasa / (minutes * 60 + seconds);
@@ -145,7 +141,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
                 tempoMinutes -= 60;
                 tempoHours++;
             }
-            TempoS = getString(R.string.tempo, precision0.format(tempoHours), precision0.format(tempoMinutes), precision0.format(tempoSeconds));
+            TempoS = getString(R.string.tempo, tempoHours, tempoMinutes, Math.round(tempoSeconds));
             Tempo.setText(TempoS);
         }
     }
@@ -158,4 +154,24 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
 }
+/*
+    Wartości do wyników:
+        okrążenia:
+            int okrazenia
+        data rozpoczecia:
+            dateFormat.format(date)
+        łączna długość trasy:
+            double trasa
+        średnia prędkość:
+            double predkosc
+        tempo:
+            tempoHours, tempoMinutes, Math.round(tempoSeconds)
+            lub
+            String TempoS
+            lub
+            float tempo
+        wartości z stopera:
+            long hours, minutes, seconds
+*/

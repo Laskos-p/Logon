@@ -32,4 +32,6 @@
     <string name="predkosc">Średnia prędkość wynosi %s m/s</string>
     <string name="tempo">Tempo biegu wynosi %02d:%02d:%02d/km</string>
     <string name="czas">%02d:%02d:%02d</string>
+    <string name="Promien">Podaj promień stołu:</string>
+    <string name="table_shape">Kształt stołu:</string>
 </resources>

@@ -3,19 +3,21 @@ package com.example.wyscig;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Ustawienia extends AppCompatActivity {
-    EditText szerokosc, wysokosc;
+    EditText szerokosc, wysokosc, promien;
     int obwod;
     RadioButton jasnosc, odleglosc;
+    Spinner spinner;
 
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,15 +25,49 @@ public class Ustawienia extends AppCompatActivity {
 
         findViewById(R.id.wyjscie).setOnClickListener(v -> openMain());
 
-        findViewById(R.id.zapis).setOnClickListener(v -> Pole());
 
+        findViewById(R.id.zapis_prostokat).setOnClickListener(v -> poleProstokat());
+        findViewById(R.id.zapis_okrag).setOnClickListener(v -> poleOkrag());
+
+        //Załadowanie wcześniej ustawionych przez użytkownika preferencji sensora
         SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_PRIVATE);
         jasnosc = (RadioButton) findViewById(R.id.jasnosc);
         odleglosc = (RadioButton) findViewById(R.id.odleglosc);
         jasnosc.setChecked(ustawienia.getBoolean("ustawienia_jasnosc",true));
         odleglosc.setChecked(ustawienia.getBoolean("ustawienia_odleglosc", false));
+
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setSelection(ustawienia.getInt("spinnervalue", 0));
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+            {
+                switch (position) {
+                    case 0:
+                        findViewById(R.id.opcje_prostokat).setVisibility(View.GONE);
+                        findViewById(R.id.opcje_okrag).setVisibility(View.VISIBLE);
+                        break;
+                    case 1:
+                        findViewById(R.id.opcje_okrag).setVisibility(View.GONE);
+                        findViewById(R.id.opcje_prostokat).setVisibility(View.VISIBLE);
+                        break;
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent)
+            {
+
+            }
+        });
+
+        //Menu rozwijane
+        String[] items = new String[]{"okrągły", "prostokątny"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        spinner.setAdapter(adapter);
     }
-    public void Pole(){
+
+    public void poleProstokat(){
         try {
             wysokosc = (EditText) findViewById(R.id.wysokosc);
             szerokosc = (EditText) findViewById(R.id.szerokosc);
@@ -39,24 +75,44 @@ public class Ustawienia extends AppCompatActivity {
             int wysInt = Integer.parseInt(wysokosc.getText().toString());
             int szerInt = Integer.parseInt(szerokosc.getText().toString());
 
-            obwod = 2*(wysInt + szerInt + 40);
+            obwod = (int) 2*(wysInt + szerInt + 40);
 
             final TextView textViewToChange = (TextView) findViewById(R.id.obwodText);
             textViewToChange.setText("Obwód to: "+ obwod);
 
             SharedPreferences sharedPreferences = getSharedPreferences("ustawienia", MODE_PRIVATE);
             SharedPreferences.Editor ustawienia = sharedPreferences.edit();
-            ustawienia.putInt("obwod", wysInt);
-            ustawienia.putInt("obwod", szerInt);
             ustawienia.putInt("obwod", obwod);
-            ustawienia.commit();
+            ustawienia.putInt("spinnervalue", 1);
+            ustawienia.apply();
 
         } catch (Throwable e) {
             final TextView textViewToChange = (TextView) findViewById(R.id.obwodText);
             textViewToChange.setText("Podaj prawidłowe wartości");
         }
-
     }
+
+    public void poleOkrag() {
+        try {
+            promien = (EditText) findViewById(R.id.promien);
+
+            int promInt = Integer.parseInt(promien.getText().toString());
+
+            obwod = (int) (6.28 * (promInt + 20));
+            final TextView textViewToChange = (TextView) findViewById(R.id.obwodText);
+            textViewToChange.setText("Obwód to: " + obwod);
+
+            SharedPreferences sharedPreferences = getSharedPreferences("ustawienia", MODE_PRIVATE);
+            SharedPreferences.Editor ustawienia = sharedPreferences.edit();
+            ustawienia.putInt("obwod", obwod);
+            ustawienia.putInt("spinnervalue", 0);
+            ustawienia.apply();
+        } catch (Throwable e) {
+            final TextView textViewToChange = (TextView) findViewById(R.id.obwodText);
+            textViewToChange.setText("Podaj prawidłowe wartości");
+        }
+    }
+
     public void onRadioButtonClicked(View v) {
         jasnosc = (RadioButton) findViewById(R.id.jasnosc);
         odleglosc = (RadioButton) findViewById(R.id.odleglosc);
@@ -66,8 +122,9 @@ public class Ustawienia extends AppCompatActivity {
 
         ustawienia.putBoolean("ustawienia_jasnosc", jasnosc.isChecked());
         ustawienia.putBoolean("ustawienia_odleglosc", odleglosc.isChecked());
-        ustawienia.commit();
+        ustawienia.apply();
     }
+
     public void openMain() {
         startActivity(new Intent(this, MainActivity.class));
         this.finish();

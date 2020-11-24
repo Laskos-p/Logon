@@ -3,32 +3,37 @@ package com.example.wyscig;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
-    SwitchCompat switchCompat;
+
     ImageButton button;
-    Button pomoc, ustawienia;
+    Button pomoc, menu_ustawienia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        switchCompat = findViewById(R.id.switch1);
+
+        SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_PRIVATE);
+
         button = findViewById(R.id.imageButton);
         button.setOnClickListener(v -> {
-            if(switchCompat.isChecked()){
+            if(ustawienia.getBoolean("ustawienia_jasnosc",true)){
                 openActivity3();
-            }else{
+            } else if (ustawienia.getBoolean("ustawienia_odleglosc",true)){
                 openActivity2();
             }
         });
+
         pomoc = findViewById(R.id.pomoc);
         pomoc.setOnClickListener(v -> openPomoc());
-        ustawienia = findViewById(R.id.ustawienia);
-        ustawienia.setOnClickListener(v -> openUstawienia());
+
+        menu_ustawienia = findViewById(R.id.ustawienia);
+        menu_ustawienia.setOnClickListener(v -> openUstawienia());
     }
     public void openPomoc(){
         Intent intent = new Intent(this, Pomoc.class);

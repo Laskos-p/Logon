@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Wyscig">
-        <activity android:name=".Wyniki"></activity>
+        <activity android:name=".Wyniki"/>
         <activity android:name=".Ustawienia" />
         <activity android:name=".Pomoc" />
         <activity android:name=".Activity3" />

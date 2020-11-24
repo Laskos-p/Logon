@@ -30,5 +30,6 @@
     <string name="Obwód_error">Podaj parametry stołu w ustawieniach</string>
     <string name="Trasa">Łączna trasa wynosi około %s m</string>
     <string name="predkosc">Średnia prędkość wynosi %s m/s</string>
-    <string name="tempo">Tempo biegu wynosi %s:%s/km</string>
+    <string name="tempo">Tempo biegu wynosi %s:%s:%s/km</string>
+    <string name="czas">%02d:%02d:%02d</string>
 </resources>

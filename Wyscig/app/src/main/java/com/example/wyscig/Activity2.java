@@ -29,14 +29,14 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
     private Sensor mProximity;
     private MediaPlayer BeepMP;
     private TextView okrazenie, data, Trasa, start, Predkosc, Tempo;
-    int i = 0, obwod, czas = 0, tempoMinutes = 0;
+    int i = 0, obwod, czas = 0, tempoHours = 0, tempoMinutes = 0;
     float tempoSeconds = 0, tempo = 0;
     double trasa = 0, obwodDouble, predkosc = 0, tempoTrasa = 0;
     String okrazenia, dataS, obwodS, obwodSError, TrasaS, PredkoscS, TempoS;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
-    Boolean resume = false, on = false;
-    long elapsedTime, minutes, seconds;
+    Boolean on = false;
+    long hours, minutes, seconds;
     DecimalFormat precision2 = new DecimalFormat("0.00");
     DecimalFormat precision0 = new DecimalFormat("0");
 
@@ -78,16 +78,14 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         Trasa.setText(TrasaS);
         PredkoscS = getString(R.string.predkosc, precision2.format(predkosc));
         Predkosc.setText(PredkoscS);
-        TempoS = getString(R.string.tempo, precision0.format(tempoMinutes), precision0.format(tempoSeconds));
+        TempoS = getString(R.string.tempo, precision0.format(tempoHours), precision0.format(tempoMinutes), precision0.format(tempoSeconds));
         Tempo.setText(TempoS);
         btnStart.setOnClickListener(v -> {
             on = true;
             i = 0;
             btnStart.setEnabled(false);
             btnStop.setEnabled(true);
-            if (!resume) {
-                cmTimer.setBase(SystemClock.elapsedRealtime());
-            }
+            cmTimer.setBase(SystemClock.elapsedRealtime());
             cmTimer.start();
             start.setVisibility(View.VISIBLE);
             DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.ENGLISH);
@@ -104,15 +102,10 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         });
         btnExit.setOnClickListener(v -> openMainActivity());
         cmTimer.setOnChronometerTickListener(arg0 -> {
-            if (!resume) {
-                minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) / 60;
-                seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
-                elapsedTime = SystemClock.elapsedRealtime();
-            } else {
-                minutes = ((elapsedTime - cmTimer.getBase()) / 1000) / 60;
-                seconds = ((elapsedTime - cmTimer.getBase()) / 1000) % 60;
-                elapsedTime = elapsedTime + 1000;
-            }
+            hours = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 3600000);
+            minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 60000);
+            seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
+            arg0.setText(getString(R.string.czas, hours, minutes, seconds));
         });
 
     }
@@ -143,12 +136,16 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             predkosc = trasa / (minutes * 60 + seconds);
             PredkoscS = getString(R.string.predkosc, precision2.format(predkosc));
             Predkosc.setText(PredkoscS);
-            czas = (int) (minutes * 60 + seconds);
+            czas = (int) (hours * 3600 + minutes * 60 + seconds);
             tempoTrasa = trasa / 1000;
             tempo = (float) (czas / tempoTrasa);
             tempoMinutes = (int) tempo / 60;
             tempoSeconds = tempo - tempoMinutes * 60;
-            TempoS = getString(R.string.tempo, precision0.format(tempoMinutes), precision0.format(tempoSeconds));
+            while (tempoMinutes >= 60) {
+                tempoMinutes -= 60;
+                tempoHours++;
+            }
+            TempoS = getString(R.string.tempo, precision0.format(tempoHours), precision0.format(tempoMinutes), precision0.format(tempoSeconds));
             Tempo.setText(TempoS);
         }
     }

@@ -10,7 +10,7 @@ import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
@@ -18,50 +18,69 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
 
-public class Activity2 extends AppCompatActivity implements SensorEventListener{
+public class Activity2 extends AppCompatActivity implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mProximity;
     private MediaPlayer BeepMP;
-    private TextView okrazenie, data;
-    int i = 0;
-    String okrazenia, TAG = "TAG", dataS, obwodS, obwodSError;
+    private TextView okrazenie, data, Trasa, start, Predkosc, Tempo;
+    int i = 0, obwod, czas = 0, tempoMinutes = 0;
+    float tempoSeconds = 0, tempo = 0;
+    double trasa = 0, obwodDouble, predkosc = 0, tempoTrasa = 0;
+    String okrazenia, dataS, obwodS, obwodSError, TrasaS, PredkoscS, TempoS;
     private static final int SENSOR_SENSITIVITY = 4;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
     Boolean resume = false, on = false;
-    long elapsedTime;
+    long elapsedTime, minutes, seconds;
+    DecimalFormat precision2 = new DecimalFormat("0.00");
+    DecimalFormat precision0 = new DecimalFormat("0");
 
     @Override
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
         SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_PRIVATE);
-        int obwod = ustawienia.getInt("obwod", 0);
-        obwodS = getString(R.string.Obwód,obwod);
-        final TextView textViewToChange = findViewById(R.id.odleglosc);
+        obwod = ustawienia.getInt("obwod", 0);
+        obwodDouble = obwod;
+        obwodDouble /= 100;
+        obwodS = getString(R.string.Obwód, precision2.format(obwodDouble));
+        final TextView textViewToChange = findViewById(R.id.wymiary_info);
         textViewToChange.setText(obwodS);
-        if (obwod == 0) {
-            obwodSError = getString(R.string.Obwód_error);
-            textViewToChange.setText(obwodSError);
-        }
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mProximity = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        BeepMP = MediaPlayer.create(this,R.raw.beep);
+        BeepMP = MediaPlayer.create(this, R.raw.beep);
         okrazenie = findViewById(R.id.okrazenia);
         data = findViewById(R.id.data_czas);
+        Trasa = findViewById(R.id.trasa);
+        start = findViewById(R.id.start);
+        Predkosc = findViewById(R.id.predkosc);
+        Tempo = findViewById(R.id.tempo);
         cmTimer = findViewById(R.id.timer);
         btnStart = findViewById(R.id.start_zegar);
         btnStop = findViewById(R.id.stop);
+        if (obwod == 0) {
+            obwodSError = getString(R.string.Obwód_error);
+            textViewToChange.setText(obwodSError);
+            btnStart.setEnabled(false);
+            btnStop.setEnabled(false);
+        }
         btnExit = findViewById(R.id.exit);
-        okrazenia = getString(R.string.okrazenia,i);
+        okrazenia = getString(R.string.okrazenia, i);
         okrazenie.setText(okrazenia);
-        dataS = getString(R.string.data,"");
+        dataS = getString(R.string.data, "");
         data.setText(dataS);
+        TrasaS = getString(R.string.Trasa, precision2.format(trasa));
+        Trasa.setText(TrasaS);
+        PredkoscS = getString(R.string.predkosc, precision2.format(predkosc));
+        Predkosc.setText(PredkoscS);
+        TempoS = getString(R.string.tempo, precision0.format(tempoMinutes), precision0.format(tempoSeconds));
+        Tempo.setText(TempoS);
         btnStart.setOnClickListener(v -> {
             on = true;
             i = 0;
@@ -71,9 +90,10 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
                 cmTimer.setBase(SystemClock.elapsedRealtime());
             }
             cmTimer.start();
+            start.setVisibility(View.VISIBLE);
             DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.ENGLISH);
             Date date = new Date();
-            dataS = getString(R.string.data,dateFormat.format(date));
+            dataS = getString(R.string.data, dateFormat.format(date));
             data.setText(dataS);
         });
         btnStop.setOnClickListener(v -> {
@@ -81,11 +101,10 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
             btnStart.setEnabled(true);
             btnStop.setEnabled(false);
             cmTimer.stop();
+            start.setVisibility(View.INVISIBLE);
         });
         btnExit.setOnClickListener(v -> openMainActivity());
         cmTimer.setOnChronometerTickListener(arg0 -> {
-            long minutes;
-            long seconds;
             if (!resume) {
                 minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) / 60;
                 seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
@@ -95,7 +114,6 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
                 seconds = ((elapsedTime - cmTimer.getBase()) / 1000) % 60;
                 elapsedTime = elapsedTime + 1000;
             }
-            Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
         });
 
     }
@@ -106,28 +124,42 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener{
         super.onResume();
         mSensorManager.registerListener(this, mProximity, SensorManager.SENSOR_DELAY_NORMAL);
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         mSensorManager.unregisterListener(this);
     }
+
     @Override
     public void onSensorChanged(SensorEvent event) {
-
-        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY && on) {
-            if (event.values[0] <= SENSOR_SENSITIVITY) {
-                BeepMP.start();
-                i++;
-                okrazenia = getString(R.string.okrazenia,i);
-                okrazenie.setText(okrazenia);
-            }
+        if (event.sensor.getType() == Sensor.TYPE_PROXIMITY && on && event.values[0] <= SENSOR_SENSITIVITY) {
+            BeepMP.start();
+            trasa += obwodDouble;
+            i++;
+            okrazenia = getString(R.string.okrazenia, i);
+            okrazenie.setText(okrazenia);
+            TrasaS = getString(R.string.Trasa, precision2.format(trasa));
+            Trasa.setText(TrasaS);
+            predkosc = trasa / (minutes * 60 + seconds);
+            PredkoscS = getString(R.string.predkosc, precision2.format(predkosc));
+            Predkosc.setText(PredkoscS);
+            czas = (int) (minutes * 60 + seconds);
+            tempoTrasa = trasa / 1000;
+            tempo = (float) (czas / tempoTrasa);
+            tempoMinutes = (int) tempo / 60;
+            tempoSeconds = tempo - tempoMinutes * 60;
+            TempoS = getString(R.string.tempo, precision0.format(tempoMinutes), precision0.format(tempoSeconds));
+            Tempo.setText(TempoS);
         }
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {}
-    public void openMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+
+    public void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

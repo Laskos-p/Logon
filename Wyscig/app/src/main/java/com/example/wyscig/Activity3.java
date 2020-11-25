@@ -1,6 +1,7 @@
 package com.example.wyscig;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -8,7 +9,7 @@ import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
@@ -16,24 +17,26 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
 
 public class Activity3 extends AppCompatActivity {
     private SensorManager sensorManager;
     private Sensor lightSensor;
     private SensorEventListener lightEventListener;
-    private TextView okrazenie2, data;
     private MediaPlayer BeepMP;
-    private float last_value;
-    int j = 0;
-    String okrazenia, TAG = "TAG";
+    private TextView okrazenie, data, Trasa, start, Predkosc, Tempo;
+    int okrazenia = 0, obwod, czas = 0, tempoHours = 0, tempoMinutes = 0;
+    float last_value, tempoSeconds = 0, tempo = 0;
+    double trasa = 0, obwodDouble, predkosc = 0, tempoTrasa = 0;
+    String okrazeniaS, dataS, obwodS, obwodSError, TrasaS, PredkoscS, TempoS;
     Chronometer cmTimer;
     Button btnStart, btnStop, btnExit;
-    Boolean resume = false, on = false;
-    long elapsedTime;
+    Boolean on = false;
+    long hours, minutes, seconds;
+    DecimalFormat precision2 = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,26 +44,51 @@ public class Activity3 extends AppCompatActivity {
         setContentView(R.layout.activity_3);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
-        okrazenie2 = findViewById(R.id.okrazenia2);
-        BeepMP = MediaPlayer.create(this,R.raw.beep);
-        data = findViewById(R.id.data_czas2);
+        SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_PRIVATE);
+        obwod = ustawienia.getInt("obwod", 0);
+        obwodDouble = obwod;
+        obwodDouble /= 100;
+        obwodS = getString(R.string.Obwód, precision2.format(obwodDouble));
+        final TextView textViewToChange = findViewById(R.id.wymiary_info);
+        textViewToChange.setText(obwodS);
+        BeepMP = MediaPlayer.create(this, R.raw.beep);
+        okrazenie = findViewById(R.id.okrazenia);
+        data = findViewById(R.id.data_czas);
+        Trasa = findViewById(R.id.trasa);
+        start = findViewById(R.id.start);
+        Predkosc = findViewById(R.id.predkosc);
+        Tempo = findViewById(R.id.tempo);
         cmTimer = findViewById(R.id.timer);
-        btnStart = findViewById(R.id.start_zegar2);
-        btnStop = findViewById(R.id.stop2);
-        btnExit = findViewById(R.id.exit2);
-        last_value=0;
+        btnStart = findViewById(R.id.start_zegar);
+        btnStop = findViewById(R.id.stop);
+        if (obwod == 0) {
+            obwodSError = getString(R.string.Obwód_error);
+            textViewToChange.setText(obwodSError);
+            btnStart.setEnabled(false);
+            btnStop.setEnabled(false);
+        }
+        btnExit = findViewById(R.id.exit);
+        okrazeniaS = getString(R.string.okrazenia, okrazenia);
+        okrazenie.setText(okrazeniaS);
+        dataS = getString(R.string.data, "");
+        data.setText(dataS);
+        TrasaS = getString(R.string.Trasa, precision2.format(trasa));
+        Trasa.setText(TrasaS);
+        PredkoscS = getString(R.string.predkosc, precision2.format(predkosc));
+        Predkosc.setText(PredkoscS);
+        TempoS = getString(R.string.tempo, tempoHours, tempoMinutes, (int) tempoSeconds);
+        Tempo.setText(TempoS);
         btnStart.setOnClickListener(v -> {
             on = true;
-            j = 0;
+            okrazenia = 0;
             btnStart.setEnabled(false);
             btnStop.setEnabled(true);
-            if (!resume) {
-                cmTimer.setBase(SystemClock.elapsedRealtime());
-            }
+            cmTimer.setBase(SystemClock.elapsedRealtime());
             cmTimer.start();
+            start.setVisibility(View.VISIBLE);
             DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss", Locale.ENGLISH);
             Date date = new Date();
-            String dataS = getString(R.string.data,dateFormat.format(date));
+            dataS = getString(R.string.data, dateFormat.format(date));
             data.setText(dataS);
         });
         btnStop.setOnClickListener(v -> {
@@ -68,53 +96,65 @@ public class Activity3 extends AppCompatActivity {
             btnStart.setEnabled(true);
             btnStop.setEnabled(false);
             cmTimer.stop();
+            start.setVisibility(View.INVISIBLE);
         });
         btnExit.setOnClickListener(v -> openMainActivity());
         cmTimer.setOnChronometerTickListener(arg0 -> {
-            long minutes;
-            long seconds;
-            if (!resume) {
-                minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) / 60;
-                seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
-                elapsedTime = SystemClock.elapsedRealtime();
-            } else {
-                minutes = ((elapsedTime - cmTimer.getBase()) / 1000) / 60;
-                seconds = ((elapsedTime - cmTimer.getBase()) / 1000) % 60;
-                elapsedTime = elapsedTime + 1000;
-            }
-            Log.d(TAG, "onChronometerTick: " + minutes + " : " + seconds);
+            hours = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 3600000);
+            minutes = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 60000);
+            seconds = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 1000) % 60;
+            arg0.setText(getString(R.string.czas, hours, minutes, seconds));
         });
         lightEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 float value = sensorEvent.values[0];
-                if(last_value >= value*2 && on) {
-                BeepMP.start();
-                j++;
-                okrazenia = getString(R.string.okrazenia,j);
-                okrazenie2.setText(okrazenia);
+                if (last_value >= value * 2 && on) {
+                    BeepMP.start();
+                    trasa += obwodDouble;
+                    okrazenia++;
+                    okrazeniaS = getString(R.string.okrazenia, okrazenia);
+                    okrazenie.setText(okrazeniaS);
+                    TrasaS = getString(R.string.Trasa, precision2.format(trasa));
+                    Trasa.setText(TrasaS);
+                    predkosc = trasa / (minutes * 60 + seconds);
+                    PredkoscS = getString(R.string.predkosc, precision2.format(predkosc));
+                    Predkosc.setText(PredkoscS);
+                    czas = (int) (hours * 3600 + minutes * 60 + seconds);
+                    tempoTrasa = trasa / 1000;
+                    tempo = (float) (czas / tempoTrasa);
+                    tempoMinutes = (int) tempo / 60;
+                    tempoSeconds = tempo - tempoMinutes * 60;
+                    while (tempoMinutes >= 60) {
+                        tempoMinutes -= 60;
+                        tempoHours++;
+                    }
+                    TempoS = getString(R.string.tempo, tempoHours, tempoMinutes, Math.round(tempoSeconds));
+                    Tempo.setText(TempoS);
                 }
-                last_value=value;
-
+                last_value = value;
             }
+
             @Override
             public void onAccuracyChanged(Sensor sensor, int accuracy) {
             }
         };
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(lightEventListener, lightSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         sensorManager.unregisterListener(lightEventListener);
     }
 
-    public void openMainActivity(){
-        Intent intent = new Intent(this,MainActivity.class);
+    public void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

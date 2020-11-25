@@ -3,78 +3,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity3"
-    android:background="@color/blekitny">
+    android:background="@color/blekitny"
+    tools:context=".Activity3">
 
     <TextView
         android:id="@+id/sensor2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/swiatla"
         android:layout_centerHorizontal="true"
+        android:layout_margin="15dp"
+        android:text="@string/swiatla"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_margin="15dp"/>
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/wymiary_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/sensor2"
+        android:layout_margin="15dp"
+        android:text="@string/Obwód"
         android:textColor="@color/black"
-        android:textSize="22sp"
-        android:layout_below="@id/sensor2"/>
-    <!--android:text="Tekst tu powinien iść od wielkości stołu"-->
-
-    <TextView
-        android:id="@+id/start2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Wyscig"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/okrazenia2"/>
-    <TextView
-        android:id="@+id/okrazenia2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
-    <TextView
-        android:id="@+id/data_czas2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/okrazenia2"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="22sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_centerInParent="true"
         android:gravity="center_horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true">
+        android:orientation="vertical">
 
-    <Chronometer
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:id="@+id/timer" />
+        <TextView
+            android:id="@+id/start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Wyscig"
+            android:visibility="invisible" />
 
-    <Button
-        android:layout_marginTop="50dp"
-        android:id="@+id/start_zegar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start"/>
+        <TextView
+            android:id="@+id/okrazenia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/okrazenia" />
 
-    <Button
-        android:id="@+id/stop2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/stop"/>
-    <Button
-        android:id="@+id/exit2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/exit"/>
+        <TextView
+            android:id="@+id/data_czas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/data" />
+
+        <TextView
+            android:id="@+id/trasa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Trasa" />
+
+        <TextView
+            android:id="@+id/predkosc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/predkosc" />
+
+        <TextView
+            android:id="@+id/tempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tempo" />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Chronometer
+            android:id="@+id/timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/start_zegar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/start" />
+
+        <Button
+            android:id="@+id/stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stop" />
+
+        <Button
+            android:id="@+id/exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exit" />
+
+    </LinearLayout>
+
 </RelativeLayout>

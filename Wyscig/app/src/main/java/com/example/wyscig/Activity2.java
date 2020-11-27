@@ -81,6 +81,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         btnStart.setOnClickListener(v -> {
             on = true;
             okrazenia = 0;
+            trasa = 0.0;
             btnStart.setEnabled(false);
             btnStop.setEnabled(true);
             cmTimer.setBase(SystemClock.elapsedRealtime());

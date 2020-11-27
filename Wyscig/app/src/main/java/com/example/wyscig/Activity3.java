@@ -81,6 +81,7 @@ public class Activity3 extends AppCompatActivity {
         btnStart.setOnClickListener(v -> {
             on = true;
             okrazenia = 0;
+            trasa = 0.0;
             btnStart.setEnabled(false);
             btnStop.setEnabled(true);
             cmTimer.setBase(SystemClock.elapsedRealtime());

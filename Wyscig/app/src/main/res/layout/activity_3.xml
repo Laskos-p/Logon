@@ -39,37 +39,49 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Wyscig"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/okrazenia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/okrazenia" />
+            android:text="@string/okrazenia"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/data_czas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/data" />
+            android:text="@string/data"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/trasa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Trasa" />
+            android:text="@string/Trasa"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/predkosc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/predkosc" />
+            android:text="@string/predkosc"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@+id/tempo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tempo" />
+            android:text="@string/tempo"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
 
     </LinearLayout>
 

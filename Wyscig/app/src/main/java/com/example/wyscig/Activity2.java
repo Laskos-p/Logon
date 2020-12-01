@@ -98,6 +98,34 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             btnStop.setEnabled(false);
             cmTimer.stop();
             start.setVisibility(View.INVISIBLE);
+            SharedPreferences sharedPreferences =  getSharedPreferences("wyniki", MODE_PRIVATE);
+            SharedPreferences.Editor wyniki = sharedPreferences.edit();
+            wyniki.putString("data", dataS);
+            wyniki.putInt("okrazenia", okrazenia);
+            wyniki.putFloat("dystans", (float) trasa);
+            wyniki.putFloat("predkosc", (float) predkosc);
+            wyniki.putString("tempo", TempoS);
+            wyniki.putString("czas", getString(R.string.czas, hours, minutes, seconds));
+            wyniki.apply();
+            /*
+    Wartości do wyników:
+        okrążenia:
+            int okrazenia
+        data rozpoczecia:
+            dateFormat.format(date)
+        łączna długość trasy:
+            double trasa
+        średnia prędkość:
+            double predkosc
+        tempo:
+            tempoHours, tempoMinutes, Math.round(tempoSeconds)
+            lub
+            String TempoS
+            lub
+            float tempo
+        wartości z stopera:
+            long hours, minutes, seconds
+*/
         });
         btnExit.setOnClickListener(v -> openMainActivity());
         cmTimer.setOnChronometerTickListener(arg0 -> {
@@ -157,22 +185,3 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
     }
 
 }
-/*
-    Wartości do wyników:
-        okrążenia:
-            int okrazenia
-        data rozpoczecia:
-            dateFormat.format(date)
-        łączna długość trasy:
-            double trasa
-        średnia prędkość:
-            double predkosc
-        tempo:
-            tempoHours, tempoMinutes, Math.round(tempoSeconds)
-            lub
-            String TempoS
-            lub
-            float tempo
-        wartości z stopera:
-            long hours, minutes, seconds
-*/

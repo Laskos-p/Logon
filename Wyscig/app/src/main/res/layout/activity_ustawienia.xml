@@ -73,6 +73,33 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/opcje_korytarz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Dlugosc_Korytarza" />
+
+            <EditText
+                android:id="@+id/dlugosc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="4"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/zapis_korytarz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/zapis" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/opcje_prostokat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

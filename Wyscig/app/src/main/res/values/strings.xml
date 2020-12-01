@@ -34,4 +34,6 @@
     <string name="czas">%02d:%02d:%02d</string>
     <string name="Promien">Podaj promień stołu:</string>
     <string name="table_shape">Kształt stołu:</string>
+    <string name="Dlugosc_Korytarza">Podaj długość korytarza</string>
+
 </resources>

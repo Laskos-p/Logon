@@ -60,8 +60,9 @@
             android:layout_height="wrap_content"
             android:text="@string/data"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_margin="2dp"/>
 
         <TextView
             android:id="@+id/trasa"
@@ -69,8 +70,9 @@
             android:layout_height="wrap_content"
             android:text="@string/Trasa"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_margin="2dp"/>
 
         <TextView
             android:id="@+id/predkosc"
@@ -78,8 +80,9 @@
             android:layout_height="wrap_content"
             android:text="@string/predkosc"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_margin="2dp"/>
 
         <TextView
             android:id="@+id/tempo"
@@ -88,7 +91,8 @@
             android:text="@string/tempo"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_margin="2dp"/>
 
     </LinearLayout>
 

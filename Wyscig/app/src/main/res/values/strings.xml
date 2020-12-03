@@ -35,5 +35,15 @@
     <string name="Promien">Podaj promień stołu:</string>
     <string name="table_shape">Kształt stołu:</string>
     <string name="Dlugosc_Korytarza">Podaj długość korytarza</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Hasło</string>
+    <string name="action_sign_in">Zaloguj/zarejestruj się</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Zła nazwa użytkownika</string>
+    <string name="invalid_password">Hasło musi mieć więcej niż 5 znaków</string>
+    <string name="login_failed">Błąd przy logowaniu</string>
+    <string name="logowanie_tytul">Logowanie</string>
 
 </resources>

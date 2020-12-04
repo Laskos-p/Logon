@@ -27,6 +27,7 @@ public class Activity3 extends AppCompatActivity {
     private Sensor lightSensor;
     private SensorEventListener lightEventListener;
     private MediaPlayer BeepMP;
+    private Button przycisk;
     private TextView okrazenie, data, Trasa, start, Predkosc, Tempo;
     int okrazenia = 0, obwod, czas = 0, tempoHours = 0, tempoMinutes = 0;
     float last_value, tempoSeconds = 0, tempo = 0;
@@ -92,13 +93,7 @@ public class Activity3 extends AppCompatActivity {
             dataS = getString(R.string.data, dateFormat.format(date));
             data.setText(dataS);
         });
-        btnStop.setOnClickListener(v -> {
-            on = false;
-            btnStart.setEnabled(true);
-            btnStop.setEnabled(false);
-            cmTimer.stop();
-            start.setVisibility(View.INVISIBLE);
-        });
+        btnStop.setOnClickListener(v -> openWyniki());
         btnExit.setOnClickListener(v -> openMainActivity());
         cmTimer.setOnChronometerTickListener(arg0 -> {
             hours = ((SystemClock.elapsedRealtime() - cmTimer.getBase()) / 3600000);
@@ -142,6 +137,7 @@ public class Activity3 extends AppCompatActivity {
         };
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -156,6 +152,10 @@ public class Activity3 extends AppCompatActivity {
 
     public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void openWyniki() {
+        Intent intent = new Intent(this, Wyniki.class);
         startActivity(intent);
     }
 }

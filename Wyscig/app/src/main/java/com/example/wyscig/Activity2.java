@@ -93,11 +93,6 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             data.setText(dataS);
         });
         btnStop.setOnClickListener(v -> {
-            on = false;
-            btnStart.setEnabled(true);
-            btnStop.setEnabled(false);
-            cmTimer.stop();
-            start.setVisibility(View.INVISIBLE);
             SharedPreferences sharedPreferences =  getSharedPreferences("wyniki", MODE_PRIVATE);
             SharedPreferences.Editor wyniki = sharedPreferences.edit();
             wyniki.putString("data", dataS);
@@ -125,7 +120,9 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             float tempo
         wartości z stopera:
             long hours, minutes, seconds
+
 */
+            openWyniki();
         });
         btnExit.setOnClickListener(v -> openMainActivity());
         cmTimer.setOnChronometerTickListener(arg0 -> {
@@ -181,6 +178,10 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
 
     public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void openWyniki() {
+        Intent intent = new Intent(this, Wyniki.class);
         startActivity(intent);
     }
 

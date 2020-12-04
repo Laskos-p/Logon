@@ -5,7 +5,7 @@
     <string name="zmiana2">światła</string>
     <string name="stolik">stolik</string>
     <string name="Wyscig">Biegnij wokół stołu</string>
-    <string name="okrazenia">Wykonano %d okrążeń</string>
+    <string name="okrazenia">Okrążenie: %d</string>
     <string name="sensor">Sensor</string>
     <string name="help_tytul">Oto pomoc!</string>
     <string name="help">Jeśli jesteś na kwarantannie i ci się nudzi, postaw telefon na stole, wybierz jeden z dostępnych w Twoim telefonie sensorów i zacznij biegać wokół stołu! Aplikacja zmierzy Twoje okrążenia.</string>
@@ -17,7 +17,7 @@
     <string name="stop">Zakończ liczenie</string>
     <string name="start">Start</string>
     <string name="exit">wyjdź</string>
-    <string name="data">Czas rozpoczęcia: %s</string>
+    <string name="data">Czas startu: %s</string>
     <string name="Dlugosc">Długość stolika w centymetrach:</string>
     <string name="Szerokosc">Szerokość stolika w centymetrach:</string>
     <string name="ustawienia">Ustawienia</string>
@@ -26,11 +26,11 @@
     <string name="sensor_odleglosci">Sensor odległości</string>
     <string name="sensor_jasnosci">Sensor jasności</string>
     <string name="tabela_wynikow">Tabela wyników</string>
-    <string name="Obwód">Długość jednego okrążenia to około: %s m</string>
+    <string name="Obwód">Długość jednego okrążenia: %s m</string>
     <string name="Obwód_error">Podaj parametry stołu w ustawieniach</string>
-    <string name="Trasa">Łączna trasa wynosi około %s m</string>
-    <string name="predkosc">Średnia prędkość wynosi %s m/s</string>
-    <string name="tempo">Tempo biegu wynosi %02d:%02d:%02d/km</string>
+    <string name="Trasa">Trasa: %s m</string>
+    <string name="predkosc">Średnia: %s m/s</string>
+    <string name="tempo">Tempo: %02d:%02d:%02d/km</string>
     <string name="czas">%02d:%02d:%02d</string>
     <string name="Promien">Podaj promień stołu:</string>
     <string name="table_shape">Kształt stołu:</string>

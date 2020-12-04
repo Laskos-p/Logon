@@ -25,7 +25,8 @@
         android:layout_margin="15dp"
         android:text="@string/Obwód"
         android:textColor="@color/black"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -39,9 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Wyscig"
-            android:visibility="invisible"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:visibility="invisible"
             android:textStyle="bold"/>
 
         <TextView
@@ -50,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/okrazenia"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="30sp"
             android:textStyle="bold"/>
 
         <TextView
@@ -59,8 +60,9 @@
             android:layout_height="wrap_content"
             android:text="@string/data"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="2dp"/>
 
         <TextView
             android:id="@+id/trasa"
@@ -68,8 +70,9 @@
             android:layout_height="wrap_content"
             android:text="@string/Trasa"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="2dp"/>
 
         <TextView
             android:id="@+id/predkosc"
@@ -77,8 +80,9 @@
             android:layout_height="wrap_content"
             android:text="@string/predkosc"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="2dp"/>
 
         <TextView
             android:id="@+id/tempo"
@@ -86,8 +90,9 @@
             android:layout_height="wrap_content"
             android:text="@string/tempo"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_margin="2dp"/>
 
     </LinearLayout>
 
@@ -103,9 +108,9 @@
             android:id="@+id/timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="32sp"
+            android:textSize="36sp"
             android:textStyle="bold"
-            android:translationY="20dp"/>
+            android:translationY="45dp"/>
 
         <Button
             android:id="@+id/start_zegar"

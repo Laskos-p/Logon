@@ -18,6 +18,17 @@
         android:textColor="@color/black"
         />
 
+    <TextView
+        android:id="@+id/test_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_below="@+id/tabela_tytul"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/black"
+        android:textSize="26sp"/>
+
 
     <Button
         android:id="@+id/stop"
@@ -28,5 +39,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/powrot_z_helpa"
         />
+
+
 
 </RelativeLayout>

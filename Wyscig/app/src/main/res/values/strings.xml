@@ -17,7 +17,7 @@
     <string name="stop">Zakończ liczenie</string>
     <string name="start">Start</string>
     <string name="exit">wyjdź</string>
-    <string name="data">Czas startu: %s</string>
+    <string name="data">%s</string>
     <string name="Dlugosc">Długość stolika w centymetrach:</string>
     <string name="Szerokosc">Szerokość stolika w centymetrach:</string>
     <string name="ustawienia">Ustawienia</string>

@@ -8,10 +8,12 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.wyscig.ui.login.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     ImageButton button;
-    Button pomoc, menu_ustawienia;
+    Button pomoc, menu_ustawienia, logowanie_z_menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
                 openActivity2();
             }
         });
+
+        logowanie_z_menu = findViewById(R.id.logowanie_z_menu);
+        logowanie_z_menu.setOnClickListener(v -> openLogowanie());
 
         pomoc = findViewById(R.id.pomoc);
         pomoc.setOnClickListener(v -> openPomoc());
@@ -49,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public void openUstawienia(){
         Intent intent = new Intent(this, Ustawienia.class);
+        startActivity(intent);
+    }
+    public void openLogowanie() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }

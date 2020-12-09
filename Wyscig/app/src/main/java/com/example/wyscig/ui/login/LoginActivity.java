@@ -3,6 +3,8 @@ package  com.example.wyscig.ui.login;
 import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -18,13 +20,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wyscig.MainActivity;
 import com.example.wyscig.R;
+import com.example.wyscig.Wyniki;
 import com.example.wyscig.ui.login.LoginViewModel;
 import com.example.wyscig.ui.login.LoginViewModelFactory;
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    Button powrot;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -113,6 +118,8 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
         });
+        powrot = findViewById(R.id.powrot_z_helpa);
+        powrot.setOnClickListener(v -> openMainActivity());
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
@@ -123,5 +130,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void openMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 }

@@ -25,7 +25,7 @@ public class Wyniki extends AppCompatActivity {
         czas = wyniki.getString("czas", null);
 
         final TextView textViewToChange = (TextView) findViewById(R.id.test_text);
-        textViewToChange.setText(dataS + " " +okrazenia+ " " +trasa+ " " +predkosc+ " " +tempoS+ " " +czas);
+        textViewToChange.setText(dataS + " " +okrazenia+ " " +trasa+ "m " +predkosc+ "km/h " +tempoS+ "m/km " +czas+"s");
 
 
     }

@@ -102,6 +102,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             wyniki.putString("tempo", TempoS);
             wyniki.putString("czas", getString(R.string.czas, hours, minutes, seconds));
             wyniki.apply();
+            cmTimer.stop();
             /*
     Wartości do wyników:
         okrążenia:

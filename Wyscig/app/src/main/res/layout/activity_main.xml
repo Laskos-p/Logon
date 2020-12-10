@@ -43,7 +43,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
+        android:weightSum="3"
         android:layout_alignParentBottom="true"
         android:layout_margin="12dp"
         android:showDividers="middle"
@@ -67,6 +67,16 @@
         android:layout_weight="1"
         style="?android:attr/buttonBarButtonStyle"
         android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/exitt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/exit"
+            android:layout_weight="1"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@color/white"/>
+
 
     </LinearLayout>
 </RelativeLayout>

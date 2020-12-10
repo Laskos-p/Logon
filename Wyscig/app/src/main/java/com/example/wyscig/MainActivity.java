@@ -13,7 +13,7 @@ import com.example.wyscig.ui.login.LoginActivity;
 public class MainActivity extends AppCompatActivity {
 
     ImageButton button;
-    Button pomoc, menu_ustawienia, logowanie_z_menu;
+    Button pomoc, menu_ustawienia, logowanie_z_menu, exitt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
                 openActivity2();
             }
         });
+
+        exitt = findViewById(R.id.exitt);
+        exitt.setOnClickListener(v -> openWyjscie());
 
         logowanie_z_menu = findViewById(R.id.logowanie_z_menu);
         logowanie_z_menu.setOnClickListener(v -> openLogowanie());
@@ -59,5 +62,9 @@ public class MainActivity extends AppCompatActivity {
     public void openLogowanie() {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+    }
+    public void openWyjscie() {
+        finish();
+        System.exit(0);
     }
 }

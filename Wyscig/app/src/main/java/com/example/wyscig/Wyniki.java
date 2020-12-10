@@ -21,7 +21,7 @@ public class Wyniki extends AppCompatActivity {
     private String dataS, tempoS, czas, wyniki_zapis, wyniki_zapis1;
     private int okrazenia;
     private float trasa, predkosc;
-    Button powrot;
+    Button powrot, resett;
 
 
     @Override
@@ -39,12 +39,17 @@ public class Wyniki extends AppCompatActivity {
 
         wyniki_zapis = "\n"+ dataS + "\nOkrążeń: " +okrazenia+ "\nTrasa: " +trasa+ "m\nPrędkość: " +predkosc+ "km/h\n" +tempoS+ "\nCzas: " +czas+ "\n________________________\n";
 
+        resett = findViewById(R.id.reset);
+        resett.setOnClickListener(v -> resetHistorii(wyniki_zapis1));
+
         wyniki_zapis1 = readFromFile((this)) + wyniki_zapis;
         writeToFile(wyniki_zapis1, this);
 
 
         powrot = findViewById(R.id.powrot_z_tabeli);
         powrot.setOnClickListener(v -> openMainActivity());
+
+
 
         final TextView textViewToChange = (TextView) findViewById(R.id.test_text);
         //textViewToChange.setText(dataS + " " +okrazenia+ " " +trasa+ "m " +predkosc+ "km/h " +tempoS+ "m/km " +czas+"s");
@@ -57,6 +62,9 @@ public class Wyniki extends AppCompatActivity {
         startActivity(intent);
         this.finish();
     }
+    public void resetHistorii(String reset_string){
+        reset_string = null;
+    }
     //ZAPIS
     private void writeToFile(String data, Context context) {
         try {
@@ -65,7 +73,7 @@ public class Wyniki extends AppCompatActivity {
             outputStreamWriter.close();
         }
         catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
+            Log.e("Exception", "Zapis się nie powiódł: " + e.toString());
         }
     }
     //ODCZYT

@@ -105,7 +105,7 @@ public class Activity3 extends AppCompatActivity {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 float value = sensorEvent.values[0];
-                if (last_value >= value * 2 && on) {
+                if (last_value >= value * 1.3 && on) {
                     BeepMP.start();
                     trasa += obwodDouble;
                     okrazenia++;

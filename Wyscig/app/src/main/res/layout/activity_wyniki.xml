@@ -22,7 +22,6 @@
         android:id="@+id/test_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_below="@+id/tabela_tytul"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
@@ -31,7 +30,7 @@
 
 
     <Button
-        android:id="@+id/stop"
+        android:id="@+id/powrot_z_tabeli"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

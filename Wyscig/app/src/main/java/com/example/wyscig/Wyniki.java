@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class Wyniki extends AppCompatActivity {
-    private String dataS, tempoS, czas;
+    private String dataS, tempoS, czas, wyniki_zapis;
     private int okrazenia;
     private float trasa, predkosc;
     Button powrot;
@@ -37,15 +37,18 @@ public class Wyniki extends AppCompatActivity {
         tempoS = wyniki.getString("tempo", null);
         czas = wyniki.getString("czas", null);
 
-        writeToFile(tempoS, this);
+        wyniki_zapis = dataS + " " +okrazenia+ " " +trasa+ "m " +predkosc+ "km/h " +tempoS+ "m/km " +czas+"s";
+
+        //writeToFile(tempoS, this);
+
 
         powrot = findViewById(R.id.powrot_z_tabeli);
         powrot.setOnClickListener(v -> openMainActivity());
 
         final TextView textViewToChange = (TextView) findViewById(R.id.test_text);
         //textViewToChange.setText(dataS + " " +okrazenia+ " " +trasa+ "m " +predkosc+ "km/h " +tempoS+ "m/km " +czas+"s");
-        textViewToChange.setText(readFromFile(this));
-
+        //textViewToChange.setText(readFromFile(this));
+        textViewToChange.setText(wyniki_zapis);
 
     }
     public void openMainActivity(){

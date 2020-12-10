@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/data"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:layout_margin="2dp"/>
 

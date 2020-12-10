@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Pomoc"
-    android:background="@color/blekitny">
+    android:background="@color/blekitny"
+    android:screenOrientation="portrait" >
+
 
     <TextView
         android:id="@+id/help_tyt"

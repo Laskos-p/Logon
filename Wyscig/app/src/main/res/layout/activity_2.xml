@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Activity2">
+    tools:context=".Activity2"
+    android:screenOrientation="portrait" >
 
     <TextView
         android:id="@+id/sensor"

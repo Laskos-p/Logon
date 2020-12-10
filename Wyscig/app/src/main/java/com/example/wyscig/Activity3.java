@@ -103,7 +103,7 @@ public class Activity3 extends AppCompatActivity {
             wyniki.putFloat("predkosc", (float) predkosc);
             wyniki.putString("tempo", TempoS);
             wyniki.putString("czas", getString(R.string.czas, hours, minutes, seconds));
-
+            wyniki.apply();
             openWyniki();
 
         });

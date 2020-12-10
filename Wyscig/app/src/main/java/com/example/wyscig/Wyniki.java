@@ -40,7 +40,10 @@ public class Wyniki extends AppCompatActivity {
         wyniki_zapis = "\n"+ dataS + "\nOkrążeń: " +okrazenia+ "\nTrasa: " +trasa+ "m\nPrędkość: " +predkosc+ "km/h\n" +tempoS+ "\nCzas: " +czas+ "\n________________________\n";
 
         resett = findViewById(R.id.reset);
-        resett.setOnClickListener(v -> wyniki_zapis1 = null);
+        resett.setOnClickListener(v -> {
+            wyniki_zapis1 = null;
+            writeToFile(wyniki_zapis1, this);
+        });
 
         wyniki_zapis1 = readFromFile((this)) + wyniki_zapis;
         writeToFile(wyniki_zapis1, this);

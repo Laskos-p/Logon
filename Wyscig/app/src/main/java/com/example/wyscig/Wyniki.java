@@ -41,7 +41,7 @@ public class Wyniki extends AppCompatActivity {
 
         resett = findViewById(R.id.reset);
         resett.setOnClickListener(v -> {
-            wyniki_zapis1 = null;
+            wyniki_zapis1 = "n";
             writeToFile(wyniki_zapis1, this);
         });
 

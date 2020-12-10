@@ -50,30 +50,30 @@
         android:divider="@color/white"
         android:background="@color/purple_700">
 
-    <Button
-        android:id="@+id/pomoc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/pomoc"
-        android:layout_weight="1"
-        style="?android:attr/buttonBarButtonStyle"
-        android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/pomoc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/pomoc"
+            android:layout_weight="0.8"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@color/white"/>
 
-    <Button
-        android:id="@+id/ustawienia"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/ustawienia"
-        android:layout_weight="1"
-        style="?android:attr/buttonBarButtonStyle"
-        android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/ustawienia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/ustawienia"
+            android:layout_weight="1.4"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/exitt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/exit"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             style="?android:attr/buttonBarButtonStyle"
             android:textColor="@color/white"/>
 

@@ -37,7 +37,7 @@ public class Wyniki extends AppCompatActivity {
         tempoS = wyniki.getString("tempo", null);
         czas = wyniki.getString("czas", null);
 
-        wyniki_zapis = dataS + " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas;
+        wyniki_zapis = dataS + " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas+ " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas+ " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas+ " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas;
 
         writeToFile(wyniki_zapis, this);
 

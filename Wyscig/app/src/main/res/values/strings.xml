@@ -25,7 +25,7 @@
     <string name="opcje_radio">Wybierz sensor</string>
     <string name="sensor_odleglosci">Sensor odległości</string>
     <string name="sensor_jasnosci">Sensor jasności</string>
-    <string name="tabela_wynikow">Tabela wyników</string>
+    <string name="tabela_wynikow">Wyniki</string>
     <string name="Obwód">Długość jednego okrążenia: %s m</string>
     <string name="Obwód_error">Podaj parametry stołu w ustawieniach</string>
     <string name="Trasa">Trasa: %s m</string>

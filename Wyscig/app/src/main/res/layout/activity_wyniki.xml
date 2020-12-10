@@ -18,16 +18,21 @@
         android:textColor="@color/black"
         />
 
-    <TextView
-        android:id="@+id/test_text"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tabela_tytul"
         android:layout_margin="20dp"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:textSize="26sp"/>
+        android:layout_below="@+id/tabela_tytul"
+        >
 
+    <TextView
+        android:id="@+id/test_text"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </ScrollView>
 
     <Button
         android:id="@+id/powrot_z_tabeli"

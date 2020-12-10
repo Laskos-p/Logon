@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -41,8 +42,11 @@ public class Wyniki extends AppCompatActivity {
 
         resett = findViewById(R.id.reset);
         resett.setOnClickListener(v -> {
-            wyniki_zapis1 = "n";
+            wyniki_zapis1 = "";
             writeToFile(wyniki_zapis1, this);
+            openMainActivity();
+            Toast tost = Toast.makeText(this, "Historia zresetowana, nastąpił powrót do menu", Toast.LENGTH_LONG);
+            tost.show();
         });
 
         wyniki_zapis1 = readFromFile((this)) + wyniki_zapis;

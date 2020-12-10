@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class Wyniki extends AppCompatActivity {
-    private String dataS, tempoS, czas, wyniki_zapis;
+    private String dataS, tempoS, czas, wyniki_zapis, wyniki_zapis1;
     private int okrazenia;
     private float trasa, predkosc;
     Button powrot;
@@ -37,9 +37,10 @@ public class Wyniki extends AppCompatActivity {
         tempoS = wyniki.getString("tempo", null);
         czas = wyniki.getString("czas", null);
 
-        wyniki_zapis = dataS + " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas+ " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas+ " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas+ " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas;
+        wyniki_zapis = dataS + "\nOkrążeń: " +okrazenia+ "\nTrasa: " +trasa+ "m\nPrędkość: " +predkosc+ "km/h\n" +tempoS+ "\nCzas: " +czas+ "________________________\n";
 
-        writeToFile(wyniki_zapis, this);
+        wyniki_zapis1 = readFromFile((this)) + wyniki_zapis;
+        writeToFile(wyniki_zapis1, this);
 
 
         powrot = findViewById(R.id.powrot_z_tabeli);

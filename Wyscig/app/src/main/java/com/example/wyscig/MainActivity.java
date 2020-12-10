@@ -64,9 +64,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void openWyjscie() {
-        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-        homeIntent.addCategory( Intent.CATEGORY_HOME );
-        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(homeIntent);
+        this.finishAffinity();
     }
 }

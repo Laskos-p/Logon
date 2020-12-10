@@ -40,7 +40,7 @@ public class Wyniki extends AppCompatActivity {
         wyniki_zapis = "\n"+ dataS + "\nOkrążeń: " +okrazenia+ "\nTrasa: " +trasa+ "m\nPrędkość: " +predkosc+ "km/h\n" +tempoS+ "\nCzas: " +czas+ "\n________________________\n";
 
         resett = findViewById(R.id.reset);
-        resett.setOnClickListener(v -> resetHistorii(wyniki_zapis1));
+        resett.setOnClickListener(v -> wyniki_zapis1 = null);
 
         wyniki_zapis1 = readFromFile((this)) + wyniki_zapis;
         writeToFile(wyniki_zapis1, this);
@@ -62,9 +62,7 @@ public class Wyniki extends AppCompatActivity {
         startActivity(intent);
         this.finish();
     }
-    public void resetHistorii(String reset_string){
-        reset_string = null;
-    }
+
     //ZAPIS
     private void writeToFile(String data, Context context) {
         try {

@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Pomoc"
     android:background="@color/blekitny"
-    android:screenOrientation="portrait" >
+    tools:context=".Pomoc">
 
 
     <TextView
@@ -25,12 +24,11 @@
         android:id="@+id/help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/help"
-        tools:ignore="MissingConstraints"
         android:layout_below="@id/help_tyt"
         android:layout_margin="15dp"
+        android:text="@string/help"
         android:textColor="@color/black"
-        />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/powrot_z_helpa"
@@ -40,6 +38,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/purple_700"
-        android:text="@string/powrot_z_helpa"/>
+        android:text="@string/powrot_z_helpa" />
 
 </RelativeLayout>

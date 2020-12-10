@@ -93,7 +93,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
             data.setText(dataS);
         });
         btnStop.setOnClickListener(v -> {
-            SharedPreferences sharedPreferences =  getSharedPreferences("wyniki", MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences("wyniki", MODE_PRIVATE);
             SharedPreferences.Editor wyniki = sharedPreferences.edit();
             wyniki.putString("data", dataS);
             wyniki.putInt("okrazenia", okrazenia);
@@ -181,6 +181,7 @@ public class Activity2 extends AppCompatActivity implements SensorEventListener 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
     public void openWyniki() {
         Intent intent = new Intent(this, Wyniki.class);
         startActivity(intent);

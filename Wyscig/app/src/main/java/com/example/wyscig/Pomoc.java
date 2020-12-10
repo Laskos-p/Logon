@@ -16,7 +16,8 @@ public class Pomoc extends AppCompatActivity {
         powrot = findViewById(R.id.powrot_z_helpa);
         powrot.setOnClickListener(v -> openMainActivity());
     }
-    public void openMainActivity(){
+
+    public void openMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         this.finish();

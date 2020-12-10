@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Activity2"
-    android:screenOrientation="portrait" >
+    tools:context=".Activity2">
 
     <TextView
         android:id="@+id/sensor"
@@ -23,19 +22,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/sensor"
+        android:layout_centerHorizontal="true"
         android:layout_margin="15dp"
         android:text="@string/Obwód"
         android:textColor="@color/black"
-        android:textSize="22sp"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="22sp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/start"
             android:layout_width="wrap_content"
@@ -43,18 +42,18 @@
             android:text="@string/Wyscig"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:visibility="invisible"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/data_czas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:text="@string/data"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_margin="2dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/okrazenia"
@@ -63,39 +62,38 @@
             android:text="@string/okrazenia"
             android:textColor="@color/black"
             android:textSize="30sp"
-            android:textStyle="bold"/>
-
+            android:textStyle="bold" />
 
 
         <TextView
             android:id="@+id/trasa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:text="@string/Trasa"
             android:textColor="@color/black"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_margin="2dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/predkosc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:text="@string/predkosc"
             android:textColor="@color/black"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_margin="2dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tempo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="2dp"
             android:text="@string/tempo"
             android:textColor="@color/black"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:layout_margin="2dp"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -113,7 +111,7 @@
             android:layout_height="wrap_content"
             android:textSize="36sp"
             android:textStyle="bold"
-            android:translationY="45dp"/>
+            android:translationY="45dp" />
 
         <Button
             android:id="@+id/start_zegar"

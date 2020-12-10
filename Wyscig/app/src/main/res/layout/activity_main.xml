@@ -3,23 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="@color/blekitny"
-    android:screenOrientation="portrait" >
+    tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/wyscig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/imageButton"
         android:layout_centerHorizontal="true"
+        android:layout_margin="30dp"
         android:text="@string/tytul"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/black"
         android:textSize="30sp"
-        android:textStyle="bold|italic"
-        android:layout_above="@id/imageButton"
-        android:layout_margin="30dp"/>
+        android:textStyle="bold|italic" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -28,56 +27,57 @@
         android:layout_centerInParent="true"
         android:adjustViewBounds="true"
         android:background="@color/blekitny"
+        android:contentDescription="@string/stolik"
         android:scaleType="centerInside"
-        android:src="@drawable/stolik"
-        android:contentDescription="@string/stolik" />
+        android:src="@drawable/stolik" />
+
     <Button
         android:id="@+id/logowanie_z_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logowanie_tytul"
-        android:backgroundTint="@color/purple_700"
         android:layout_below="@id/imageButton"
         android:layout_centerHorizontal="true"
         android:layout_margin="20dp"
-        android:textColor="@color/white"
-        />
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/logowanie_tytul"
+        android:textColor="@color/white" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="3"
         android:layout_alignParentBottom="true"
         android:layout_margin="12dp"
-        android:showDividers="middle"
+        android:background="@color/purple_700"
         android:divider="@color/white"
-        android:background="@color/purple_700">
+        android:showDividers="middle"
+        android:weightSum="3">
 
         <Button
             android:id="@+id/pomoc"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/pomoc"
             android:layout_weight="0.8"
-            style="?android:attr/buttonBarButtonStyle"
-            android:textColor="@color/white"/>
+            android:text="@string/pomoc"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/ustawienia"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/ustawienia"
             android:layout_weight="1.4"
-            style="?android:attr/buttonBarButtonStyle"
-            android:textColor="@color/white"/>
+            android:text="@string/ustawienia"
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/exitt"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/exit"
             android:layout_weight="0.8"
-            style="?android:attr/buttonBarButtonStyle"
-            android:textColor="@color/white"/>
+            android:text="@string/exit"
+            android:textColor="@color/white" />
 
 
     </LinearLayout>

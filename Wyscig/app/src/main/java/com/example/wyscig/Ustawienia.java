@@ -38,7 +38,7 @@ public class Ustawienia extends AppCompatActivity {
         SharedPreferences ustawienia = getSharedPreferences("ustawienia", MODE_PRIVATE);
         jasnosc = (RadioButton) findViewById(R.id.jasnosc);
         odleglosc = (RadioButton) findViewById(R.id.odleglosc);
-        jasnosc.setChecked(ustawienia.getBoolean("ustawienia_jasnosc",true));
+        jasnosc.setChecked(ustawienia.getBoolean("ustawienia_jasnosc", true));
         odleglosc.setChecked(ustawienia.getBoolean("ustawienia_odleglosc", false));
 
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -55,7 +55,8 @@ public class Ustawienia extends AppCompatActivity {
             findViewById(R.id.opcje_okrag).setVisibility(View.VISIBLE);
             try {
                 promien.setText(String.valueOf(ustawienia.getInt("prom", 0)));
-            } catch (Throwable ignored) {}
+            } catch (Throwable ignored) {
+            }
         } else if (ustawienia.getInt("spinnervalue", 0) == 1) {
             findViewById(R.id.opcje_okrag).setVisibility(View.GONE);
             findViewById(R.id.opcje_korytarz).setVisibility(View.GONE);
@@ -63,20 +64,21 @@ public class Ustawienia extends AppCompatActivity {
             try {
                 szerokosc.setText(String.valueOf(ustawienia.getInt("szer", 0)));
                 wysokosc.setText(String.valueOf(ustawienia.getInt("wys", 0)));
-            } catch (Throwable ignored) {}
+            } catch (Throwable ignored) {
+            }
         } else {
             findViewById(R.id.opcje_okrag).setVisibility(View.GONE);
             findViewById(R.id.opcje_korytarz).setVisibility(View.VISIBLE);
             findViewById(R.id.opcje_prostokat).setVisibility(View.GONE);
             try {
                 dlugosc.setText(String.valueOf(ustawienia.getInt("dl", 0)));
-            } catch (Throwable ignored) {}
+            } catch (Throwable ignored) {
+            }
         }
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-            {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
                         findViewById(R.id.opcje_prostokat).setVisibility(View.GONE);
@@ -95,20 +97,20 @@ public class Ustawienia extends AppCompatActivity {
                         break;
                 }
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
     }
 
-    public void obwProstokat(){
+    public void obwProstokat() {
         try {
             int wysInt = Integer.parseInt(wysokosc.getText().toString());
             int szerInt = Integer.parseInt(szerokosc.getText().toString());
 
-            droga = (int) 2*(wysInt + szerInt + 40);
+            droga = (int) 2 * (wysInt + szerInt + 40);
 
             SharedPreferences sharedPreferences = getSharedPreferences("ustawienia", MODE_PRIVATE);
             SharedPreferences.Editor ustawienia = sharedPreferences.edit();
@@ -141,11 +143,12 @@ public class Ustawienia extends AppCompatActivity {
             textViewToChange.setText("Podaj prawidłowe wartości");
         }
     }
+
     public void obwKorytarz() {
         try {
             int dlInt = Integer.parseInt(dlugosc.getText().toString());
 
-            droga = (int) dlInt*2;
+            droga = (int) dlInt * 2;
             final TextView textViewToChange = (TextView) findViewById(R.id.obwodText);
             textViewToChange.setText("Obwód to: " + droga);
 

@@ -92,9 +92,17 @@ public class Activity3 extends AppCompatActivity {
             dataS = getString(R.string.data, dateFormat.format(date));
             data.setText(dataS);
         });
-        btnStop.setOnClickListener(v ->  {
+        btnStop.setOnClickListener(v -> {
+            SharedPreferences sharedPreferences =  getSharedPreferences("wyniki", MODE_PRIVATE);
+            SharedPreferences.Editor wyniki = sharedPreferences.edit();
+            wyniki.putString("data", dataS);
+            wyniki.putInt("okrazenia", okrazenia);
+            wyniki.putFloat("dystans", (float) trasa);
+            wyniki.putFloat("predkosc", (float) predkosc);
+            wyniki.putString("tempo", TempoS);
+            wyniki.putString("czas", getString(R.string.czas, hours, minutes, seconds));
+            wyniki.apply();
             cmTimer.stop();
-            openWyniki();
         });
         btnExit.setOnClickListener(v -> openMainActivity());
         cmTimer.setOnChronometerTickListener(arg0 -> {

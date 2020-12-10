@@ -39,7 +39,7 @@ public class Wyniki extends AppCompatActivity {
 
         wyniki_zapis = dataS + " \nOkrążeń: " +okrazenia+ " \nTrasa: " +trasa+ "m \nPrędkość: " +predkosc+ " km/h \n" +tempoS+ " \nCzas: " +czas;
 
-        //writeToFile(tempoS, this);
+        writeToFile(wyniki_zapis, this);
 
 
         powrot = findViewById(R.id.powrot_z_tabeli);
@@ -47,8 +47,8 @@ public class Wyniki extends AppCompatActivity {
 
         final TextView textViewToChange = (TextView) findViewById(R.id.test_text);
         //textViewToChange.setText(dataS + " " +okrazenia+ " " +trasa+ "m " +predkosc+ "km/h " +tempoS+ "m/km " +czas+"s");
-        //textViewToChange.setText(readFromFile(this));
-        textViewToChange.setText(wyniki_zapis);
+        textViewToChange.setText(readFromFile(this));
+        //textViewToChange.setText(wyniki_zapis);
 
     }
     public void openMainActivity(){
